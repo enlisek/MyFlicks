@@ -3,7 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@color/pink_200"
     android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingTop="5dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
     tools:ignore="MissingDefaultResource">
 
     <LinearLayout
@@ -14,30 +24,26 @@
 
         <TextView
             android:id="@+id/textView11"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Title:" />
 
         <TextView
             android:id="@+id/seriesTitleTextView"
-            android:layout_width="26dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:paddingRight="10dp" />
+            android:layout_weight="6"
+            android:paddingRight="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/buttonDeleteSeries"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Release year:" />
-
-        <TextView
-            android:id="@+id/seriesReleaseTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4" />
+            android:text="X" />
     </LinearLayout>
 
     <LinearLayout
@@ -47,30 +53,51 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView13"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
+            android:text="Release year:" />
+
+        <TextView
+            android:id="@+id/seriesReleaseTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
             android:text="Director:" />
 
         <TextView
             android:id="@+id/seriesDirectorTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4" />
+            android:layout_weight="3" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:text="Number of seasons:" />
 
         <TextView
             android:id="@+id/seriesSeasonsTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1.5" />
 
     </LinearLayout>
 
@@ -82,24 +109,17 @@
 
         <TextView
             android:id="@+id/textView14"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Description:" />
 
         <TextView
             android:id="@+id/seriesDescriptionTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="3.5" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/buttonDeleteSeries"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Delete" />
 
 
 </LinearLayout>
