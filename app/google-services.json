@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "369508320706",
+    "project_id": "myflicks-6a0d8",
+    "storage_bucket": "myflicks-6a0d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369508320706:android:0915c08f0f7bbbedbe025b",
+        "android_client_info": {
+          "package_name": "com.example.myflicks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369508320706-jb0egd5q2nq0hpe3d7vgl0bgkga45hfu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJQI4Imw0GMTvbkd3aMBg9XGEL5ZzauD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369508320706-jb0egd5q2nq0hpe3d7vgl0bgkga45hfu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
