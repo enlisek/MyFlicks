@@ -44,6 +44,7 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //instancja viewmodelu
         mainViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.AndroidViewModelFactory.getInstance(
             Application()
         )).get(MainViewModel::class.java)
@@ -54,11 +55,13 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //reakcja na klikniecie w "sign up"
         buttonRegister.setOnClickListener { view -> run{
 
             var email = editTextTextEmailAddress.text.toString().trim()
             var pass1 = editTextTextPassword1.text.toString()
 
+            //kontrola czy wszystkie pola zostaly poprawnie wypelnione
             if (email.isEmpty())
             {
                 editTextTextEmailAddress.error = "E-mail is required."
@@ -77,13 +80,16 @@ class RegisterFragment : Fragment() {
                     }
                     else
                     {
+                        //dodanie uzytkownika
                         mainViewModel.fAuth.createUserWithEmailAndPassword(email,pass1).addOnCompleteListener { task ->
                             if (task.isSuccessful)
                             {
+                                //nawigacja do panelu logowania i poinformowanie, ze konto zostalo stworzone
                                 Toast.makeText(context,"User created.",Toast.LENGTH_SHORT).show()
                                 view.findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
 
                             } else {
+                                //informacja o bledzie zwroconych przez firebase
                                 Toast.makeText(context,"Error. Try again.",Toast.LENGTH_SHORT).show()
                             }
                         }

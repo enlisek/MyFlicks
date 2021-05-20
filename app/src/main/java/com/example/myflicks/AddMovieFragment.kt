@@ -47,6 +47,7 @@ class AddMovieFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
+        //instancja viewmodelu
         mainViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.AndroidViewModelFactory.getInstance(
             Application()
         )).get(MainViewModel::class.java)
@@ -60,6 +61,7 @@ class AddMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //reakcja na przycisk zatwierdzajacy dane
         submitDataMovie.setOnClickListener{
             val title = movieTitleInput.text.toString()
             val director = directorMovieInput.text.toString()
@@ -72,8 +74,10 @@ class AddMovieFragment : Fragment() {
                     {
                         val year = releaseMovieInput.text.toString().toInt()
                         val id = Date().time.toString()
+                        //dane są dodawane do bazy danych w firebase'ie
                         val firebaseInput = MovieRow(id,title,director,year,description)
                         mainViewModel.databaseReferenceMovies.child(id).setValue(firebaseInput)
+                        //czyszczenie pol
                         movieTitleInput.setText("")
                         directorMovieInput.setText("")
                         descriptionMovieInput.setText("")

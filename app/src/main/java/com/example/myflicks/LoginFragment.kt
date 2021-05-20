@@ -42,6 +42,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //istancja viewmodelu
         mainViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.AndroidViewModelFactory.getInstance(
             Application()
         )).get(MainViewModel::class.java)
@@ -52,9 +53,11 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //reakcja na przycisk "Log in"
         buttonLogin.setOnClickListener { view -> kotlin.run {
             var email = editTextLoginEmail.text.toString().trim()
             var password = editTextLoginPassword.text.toString()
+            //kontrola czy pola zostały wypełnione
             if (email.isEmpty())
             {
                 editTextLoginEmail.error = "E-mail is required."
@@ -67,12 +70,14 @@ class LoginFragment : Fragment() {
                 }
                 else
                 {
+                    //zalogowanie się z wykorzystaniem firebase i instancji fAuth zawartej w viewmodelu
                     mainViewModel.fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener { task ->
                         if (task.isSuccessful)
                         {
                             view.findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
 
                         } else {
+                            //gdy firebase zwróci błąd, wyświetla się on również na ekranie
                             Toast.makeText(context,"Error. " + (task.exception?.message ?: ""),Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -83,7 +88,7 @@ class LoginFragment : Fragment() {
 
         }
 
-
+        //po kliknieciu w przycisk "sign up" aplikacja nawiguje do odpowiedniego widoku
         buttonLoginToRegister.setOnClickListener { view -> view.findNavController().navigate(R.id.action_loginFragment_to_registerFragment) }
     }
 

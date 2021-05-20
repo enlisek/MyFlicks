@@ -46,6 +46,7 @@ class MainFragment : Fragment() {
         mainViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.AndroidViewModelFactory.getInstance(
             Application()
         )).get(MainViewModel::class.java)
+        //jesli jakis uzytkownik jest zalogowany, to pobiera sie jego uid i na jego podstawie tworzona jest referencja do bazy
         if (mainViewModel.fAuth.currentUser != null) {
             mainViewModel.userID = mainViewModel.fAuth.currentUser.uid
             Log.d("MF: ",mainViewModel.fAuth.currentUser.uid)
@@ -75,6 +76,7 @@ class MainFragment : Fragment() {
 
         Log.d("Main Fragment","OnViewCreated")
 
+        //fragmnety widoczne w viewpagerze
         moviesFragment = MoviesFragment()
         seriesFragment = SeriesFragment()
         addMovieFragment = AddMovieFragment()
@@ -93,9 +95,6 @@ class MainFragment : Fragment() {
 
     }
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//    }
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -116,6 +115,8 @@ class MainFragment : Fragment() {
             }
     }
 
+    //dzieki slowie "State" pager nie zapamietuje starych widokow
+    //obsluga pagera
     class ViewPagerAdapter(fm : FragmentManager, behavior: Int ) : FragmentStatePagerAdapter(fm,behavior) {
         private var fragments : MutableList<Fragment> = mutableListOf()
         private var fragmentTitles : MutableList<String> = mutableListOf()
@@ -144,6 +145,7 @@ class MainFragment : Fragment() {
 
     }
 
+    //reakcja po kliknieciu w przycisk "Log out" w górnym menu - przejscie do widoku logowania oraz wylogowanie uzytkownika w fAuth
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.getItemId()) {
             R.id.log_out -> {
@@ -159,7 +161,7 @@ class MainFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu,inflater: MenuInflater) {
 
         //tworzy sie menu
-
+        //tworzy sie napis z aktualnie zalogowanym uzytkownikiem
         val tv = TextView(context)
         tv.text = mainViewModel.fAuth.currentUser?.email ?: ""
         tv.setPadding(5, 0, 5, 0)

@@ -51,12 +51,13 @@ class MoviesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        //instancja viewmodelu
         mainViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.AndroidViewModelFactory.getInstance(
             Application()
         )).get(MainViewModel::class.java)
         Log.d("Movies Fragment","onCreateView")
 
-
+        //manager do wyświetlania listy filmow
         viewManager= LinearLayoutManager(requireContext())
 
 
@@ -66,17 +67,14 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        mainViewModel.fAuth.addAuthStateListener {
-//            if(mainViewModel.fAuth.currentUser == null){
-//                this.finish()
-//            }
-//        }
-
         Log.d("Movies Fragment","OnViewCreated")
 
         recyclerViewMovies.layoutManager = viewManager
+        //przypisanie adaptera
         setupAdapter(mainViewModel.listOfMovies,mainViewModel)
+        //referencja do odpowiedniej bazy danych (na podstawie id uzytkownika)
         mainViewModel.databaseReferenceMovies = mainViewModel.fireBase.getReference(mainViewModel.sbMovie+mainViewModel.userID)
+        //nasłuchiwanie zmian
         mainViewModel.databaseReferenceMovies.addValueEventListener(object: ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -103,6 +101,7 @@ class MoviesFragment : Fragment() {
 
     }
 
+    //adapter do recycler view
     private fun setupAdapter(arrayData : ArrayList<MovieRow>, mainViewModel: MainViewModel){
         recyclerViewMovies.adapter = MovieAdapter(arrayData,mainViewModel)
         Log.d("MoviesFragment, ", "setupAdapter")

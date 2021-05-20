@@ -42,6 +42,7 @@ class AddSeriesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
+        //instancja viewmodelu
         mainViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.AndroidViewModelFactory.getInstance(
             Application()
         )).get(MainViewModel::class.java)
@@ -52,6 +53,7 @@ class AddSeriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //reakcja na przycisk zatwierdzajacy dane
         submitDataSeries.setOnClickListener{
             val title = titleSeriesInput.text.toString()
             val director = directorSeriesInput.text.toString()
@@ -74,8 +76,10 @@ class AddSeriesFragment : Fragment() {
                         }
                         val year = releaseSeriesInput.text.toString().toInt()
                         val id = Date().time.toString()
+                        //dodanie rekordu do bazy
                         val firebaseInput = SeriesRow(id,title,director,year,seasons,description)
                         mainViewModel.databaseReferenceSeries.child(id).setValue(firebaseInput)
+                        //czyszczenie pol
                         titleSeriesInput.setText("")
                         directorSeriesInput.setText("")
                         descriptionSeriesInput.setText("")

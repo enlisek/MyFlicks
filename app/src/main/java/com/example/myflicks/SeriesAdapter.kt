@@ -23,6 +23,7 @@ class SeriesAdapter(private val dataArray: ArrayList<SeriesRow>, val mainViewMod
         holder.titleTextView.text = dataArray[holder.adapterPosition].title
         holder.directorTextView.text = dataArray[holder.adapterPosition].director
         holder.releaseTextView.text = dataArray[holder.adapterPosition].releaseYear.toString()
+        //jesli liczba sezonow jest nullem - nie wyswietla sie nic
         if(dataArray[holder.adapterPosition].numberOfSeasons.toString() != "null" )
         {
             holder.seasonsTextView.text = dataArray[holder.adapterPosition].numberOfSeasons.toString()
